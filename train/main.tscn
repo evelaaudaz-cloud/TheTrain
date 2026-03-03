@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://kyd6dra0ytb"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 1151.0
+offset_bottom = 647.0
