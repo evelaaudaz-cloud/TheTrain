@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="Train"
+run/main_scene="uid://kyd6dra0ytb"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://assets/icon.svg"
