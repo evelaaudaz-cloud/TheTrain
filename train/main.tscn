@@ -1,7 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://kyd6dra0ytb"]
+[gd_scene load_steps=17 format=3 uid="uid://kyd6dra0ytb"]
 
+[ext_resource type="Script" uid="uid://dmmnsgbnwh2at" path="res://TrenManager.gd" id="1_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cf05eilgh5r3h" path="res://assets/1772582268186.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cds32p1vuidog" path="res://assets/images (1).jpg" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://bidt5w7l8hy44" path="res://assets/82 sin título_20260304171159.png" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://1wa2qw068br" path="res://assets/icon.svg" id="3_lquwl"]
+[ext_resource type="Shader" uid="uid://dkiqh7c7p1rvf" path="res://vias.gdshader" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://bm1686xxlcxfg" path="res://tronco.gd" id="5_272bh"]
+[ext_resource type="Texture2D" uid="uid://5x81b6bwnivg" path="res://assets/84 sin título_20260304180450.png" id="6_5vw27"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bvp3"]
+radius = 54.4243
 
 [sub_resource type="Sky" id="Sky_h2yge"]
 
@@ -16,7 +25,18 @@ albedo_texture = ExtResource("2_0xm2m")
 [sub_resource type="PlaneMesh" id="PlaneMesh_7mycd"]
 material = SubResource("StandardMaterial3D_lquwl")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+albedo_texture = ExtResource("3_lquwl")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5vw27"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kek77"]
+render_priority = 0
+shader = ExtResource("5_7mycd")
+shader_parameter/velocidad = 200.0
+
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_7mycd")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 
@@ -29,6 +49,66 @@ offset_bottom = 659.0
 texture = ExtResource("1_ig7tw")
 expand_mode = 1
 
+[node name="CalderaUI" type="Control" parent="CanvasLayer" groups=["caldera"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/CalderaUI"]
+position = Vector2(587, 507)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/CalderaUI/Area2D"]
+shape = SubResource("CircleShape2D_1bvp3")
+
+[node name="82SinTítulo20260304171159" type="Sprite2D" parent="CanvasLayer/CalderaUI"]
+position = Vector2(587, 497)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_h2yge")
+
+[node name="VSlider" type="VSlider" parent="CanvasLayer/CalderaUI"]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 477.0
+offset_right = 443.0
+offset_bottom = 485.0
+ticks_on_borders = true
+
+[node name="ContenedorTroncos" type="Node2D" parent="CanvasLayer/CalderaUI"]
+position = Vector2(857, 617)
+
+[node name="Tronco_Madera" type="Sprite2D" parent="CanvasLayer/CalderaUI/ContenedorTroncos"]
+texture = ExtResource("3_lquwl")
+script = ExtResource("5_272bh")
+
+[node name="Cuerda_Bocina" type="TextureButton" parent="CanvasLayer/CalderaUI"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 244.0
+offset_right = 148.0
+offset_bottom = 284.0
+
+[node name="DisplayDInero" type="Label" parent="CanvasLayer/CalderaUI"]
+layout_mode = 0
+offset_left = 1043.0
+offset_top = 105.0
+offset_right = 1083.0
+offset_bottom = 128.0
+text = "5000"
+
+[node name="Reloj" type="Label" parent="CanvasLayer/CalderaUI"]
+layout_mode = 0
+offset_left = 1037.0
+offset_top = 170.0
+offset_right = 1077.0
+offset_bottom = 193.0
+
+[node name="CaraCaldera" type="Sprite2D" parent="CanvasLayer/CalderaUI"]
+position = Vector2(713, 467)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("6_5vw27")
+hframes = 4
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1bvp3")
 
@@ -36,16 +116,26 @@ environment = SubResource("Environment_1bvp3")
 transform = Transform3D(1, 0, 0, 0, 0.307606, 0.951514, 0, -0.951514, 0.307606, -3.65198, 1.23414, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -2, 0, 2, -8.74228e-08, -0.0678564, 0.0198967, -10.8562)
+transform = Transform3D(2, 0, 0, 0, -8.74228e-08, -4, 0, 2, -1.74846e-07, 0, 1.20842, -39.8805)
 mesh = SubResource("PlaneMesh_7mycd")
 skeleton = NodePath("../DirectionalLight3D")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.18557e-07, 1, -4.37114e-08, 0, -4.37114e-08, -1, -5, -4.37114e-08, 1.91069e-15, -2.07455, 0.0198967, -5.82878)
+transform = Transform3D(-8.74228e-07, 1, -1.74846e-07, 0, -4.37114e-08, -4, -20, -4.37114e-08, 7.64274e-15, -2, 1.22842, -20.105)
 mesh = SubResource("PlaneMesh_7mycd")
 skeleton = NodePath("../DirectionalLight3D")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(-2.18557e-07, -1, 4.37114e-08, 0, -4.37114e-08, -1, 5, -4.37114e-08, 1.91069e-15, 0.934924, 0.0198967, -5.82878)
+transform = Transform3D(-8.74228e-07, -1, 1.74846e-07, 0, -4.37114e-08, -4, 20, -4.37114e-08, 7.64274e-15, 2, 1.22842, -19.9966)
 mesh = SubResource("PlaneMesh_7mycd")
 skeleton = NodePath("../DirectionalLight3D")
+
+[node name="Mundo3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.73925)
+
+[node name="vias_infinitas" type="MeshInstance3D" parent="Mundo3D"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 40, 0.0110688, -1.58258, 0.321812)
+material_override = SubResource("StandardMaterial3D_5vw27")
+mesh = SubResource("PlaneMesh_5vw27")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_kek77")
